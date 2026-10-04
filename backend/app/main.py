@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+
+from app.db.init_db import init_db
+
 from app.api.health import router as health_router
 from app.api.db_test import router as db_test_router
 from app.api.documents import router as documents_router
@@ -17,6 +20,8 @@ app = FastAPI(
     description="Evidence-aware AI document investigation platform",
     version="0.1.0",
 )
+
+init_db()
 
 
 app.add_middleware(
